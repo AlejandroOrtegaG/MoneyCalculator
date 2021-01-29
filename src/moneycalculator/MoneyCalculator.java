@@ -12,6 +12,7 @@ import java.util.Scanner;
 public class MoneyCalculator {
 
     public static void main(String[] args) throws IOException {
+        
         System.out.println("Introduce una cantidad de dólares: ");
         Scanner scanner = new Scanner(System.in);
         double cantidad = scanner.nextDouble();
@@ -21,6 +22,7 @@ public class MoneyCalculator {
     }
 
     private static double Cambiar(String dinero, String cambio) throws MalformedURLException, IOException {
+        if (dinero.equals(cambio)) return 1;
         URL url = new URL("https://api.exchangeratesapi.io/latest?base=" + dinero 
                 + "&symbols=" + cambio + "&compact=y");
         
