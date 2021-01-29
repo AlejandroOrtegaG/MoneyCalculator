@@ -14,6 +14,8 @@ public class MoneyCalculator {
     double cantidad;
     double cambio;
     String divisa;
+    String divisa2;
+    
     public static void main(String[] args) throws IOException {
         MoneyCalculator calcular = new MoneyCalculator();
         calcular.control();
@@ -21,7 +23,7 @@ public class MoneyCalculator {
     
 
     private static double Cambiar(String dinero, String cambio) throws MalformedURLException, IOException {
-        if (dinero.equals(cambio)) return 1;
+        if(dinero.equals(cambio)) return 1;
         URL url = new URL("https://api.exchangeratesapi.io/latest?base=" + dinero 
                 + "&symbols=" + cambio + "&compact=y");
         
@@ -52,14 +54,17 @@ public class MoneyCalculator {
         System.out.println("Introduce una divisa: ");
         divisa = scanner.next();
         
+        System.out.println("Introduce una divisa a cambiar: ");
+        divisa2 = scanner.next();
+        
     }
 
     private void process() throws IOException{
-        cambio = Cambiar(divisa, "EUR");
+        cambio = Cambiar(divisa, divisa2);
     }
 
     private void output() {
-        System.out.println(cantidad + " " + divisa + " = " +
-                cantidad*cambio + " euros");
+        System.out.println(cantidad + " " + divisa + " = " + cantidad*cambio
+                + " " + divisa2);
     }
 }
