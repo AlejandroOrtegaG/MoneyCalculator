@@ -11,15 +11,14 @@ import java.util.Scanner;
 
 public class MoneyCalculator {
 
+    double cantidad;
+    double cambio;
+    String divisa;
     public static void main(String[] args) throws IOException {
-        
-        System.out.println("Introduce una cantidad de dólares: ");
-        Scanner scanner = new Scanner(System.in);
-        double cantidad = scanner.nextDouble();
-        double cambio = Cambiar("USD","EUR");
-        System.out.println(cantidad + " dolares equivalen a " 
-                + cantidad*cambio + " euros");   
+        MoneyCalculator calcular = new MoneyCalculator();
+        calcular.control();
     }
+    
 
     private static double Cambiar(String dinero, String cambio) throws MalformedURLException, IOException {
         if (dinero.equals(cambio)) return 1;
@@ -36,5 +35,31 @@ public class MoneyCalculator {
             return Double.parseDouble(linea1);
             
         }
+    }
+
+    private void control() throws IOException{
+        intput();
+        process();
+        output();
+        
+    }
+
+    private void intput() {
+        System.out.println("Introduzca cantidad: ");
+        Scanner scanner = new Scanner (System.in);
+        cantidad = scanner.nextDouble();
+        
+        System.out.println("Introduce una divisa: ");
+        divisa = scanner.next();
+        
+    }
+
+    private void process() throws IOException{
+        cambio = Cambiar(divisa, "EUR");
+    }
+
+    private void output() {
+        System.out.println(cantidad + " " + divisa + " = " +
+                cantidad*cambio + " euros");
     }
 }
